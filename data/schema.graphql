@@ -1,0 +1,34 @@
+type Query {
+  me: User
+  user(id: ID!): User
+  users(after: String, first: Int, before: String, last: Int, search: String): UserConnection
+}
+
+type User {
+  id: ID!
+  _id: String
+  name: String
+  email: String
+  active: Boolean
+}
+
+type UserConnection {
+  count: Int!
+  totalCount: Int!
+  startCursorOffset: Int!
+  endCursorOffset: Int!
+  pageInfo: PageInfoExtended!
+  edges: [UserEdge]!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+type PageInfoExtended {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
